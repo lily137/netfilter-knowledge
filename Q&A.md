@@ -1,5 +1,5 @@
 
-# 1. 修改iptables规则之后，能不能立即对已经存在的数据流生效？ 
+## 1. 修改iptables规则之后，能不能立即对已经存在的数据流生效？ 
 
 要看数据流是不是走CPU转发，走CPU转发的包可以立即应用新增/修改的iptables 规则。
 如果发现修改了iptables规则之后，对当前的数据流不起作用，说明当前的数据流可能是走硬件转发。
@@ -15,7 +15,7 @@
 
 数据包走CPU还是硬件转发，每个芯片有自己的实现。
 
-# 2. NAT表只有第一个包会走，后面的同一个数据流的包上CPU也不再走了。
+## 2. NAT表只有第一个包会走，后面的同一个数据流的包上CPU也不再走了。
 
 iptables -t nat -nvL POSTROUTING
 Chain POSTROUTING (policy ACCEPT 27 packets, 2096 bytes)
