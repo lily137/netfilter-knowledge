@@ -5,8 +5,8 @@
 
 观察 从LAN侧PC(192.168.1.3) ping WAN 侧server (61.1.1.1)
 
-Qualcomm板子: 所有Ping包走CPU转发，在Beacon 10上增加规则 iptables -I FORWORD -s 192.168.1.3 -p icmp -j DROP 之后， ping包立刻不通了。
-Realtek板子: 只有第一个Ping包走CPU转发，后续ping包都走硬件转发，看conntrack表的统计可以看出。 增加规则  iptables -I FORWORD -s 192.168.1.3 -p icmp -j DROP 之后 , ping包还通的。 
+- Qualcomm板子: 所有Ping包走CPU转发，在Beacon 10上增加规则 iptables -I FORWORD -s 192.168.1.3 -p icmp -j DROP 之后， ping包立刻不通了。
+- Realtek板子: 只有第一个Ping包走CPU转发，后续ping包都走硬件转发，看conntrack表的统计可以看出。 增加规则  iptables -I FORWORD -s 192.168.1.3 -p icmp -j DROP 之后 , ping包还通的。 
 应该需要等硬件转发表过期之后，ping包才会不通。 
 
 修改了iptables能不能立即生效，其实跟有没有conntrack表没有关系，主要是看报文是不是走CPU。那为什么Realtek上增加了iptables之后flush conntrack表，iptables 就会立即生效呢？ 
